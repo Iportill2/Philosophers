@@ -6,7 +6,7 @@
 /*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 12:50:58 by iportill          #+#    #+#             */
-/*   Updated: 2023/12/27 17:25:28 by iportill         ###   ########.fr       */
+/*   Updated: 2023/12/28 16:44:40 by iportill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,11 @@ typedef struct s_philo//esta structura representa a cada philo
 
 typedef struct s_list
 {
+	pthread_mutex_t *mutex;
 	char *prueba;
+	size_t init_philo;
+	size_t stat;
+	size_t id;
 	size_t num_philo;//numero de filosofos >200
 	size_t time_to_die;//tiempo para morir <60
 	size_t time_to_eat;//tiempo que comen  <60
@@ -49,6 +53,6 @@ typedef struct s_list
 /*UTILS*/
 void* ft_calloc(size_t num, size_t size);
 int	ft_atoi(const char *str);
-void set_struct(int argc,char **argv);
+int set_struct(int argc,char **argv);
 
 #endif
