@@ -6,7 +6,7 @@
 /*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 12:51:03 by iportill          #+#    #+#             */
-/*   Updated: 2023/12/29 16:50:05 by iportill         ###   ########.fr       */
+/*   Updated: 2023/12/29 16:50:32 by iportill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ int check_eats(t_list *d)
 	size_t i;
 
 	i=0;
-	int x = 0;
+	size_t x = 0;
 	if(d->philo_eats)
 		return(0);
 	while(i < d->num_philo)
