@@ -6,7 +6,7 @@
 /*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 12:51:03 by iportill          #+#    #+#             */
-/*   Updated: 2023/12/28 16:52:42 by iportill         ###   ########.fr       */
+/*   Updated: 2023/12/29 16:50:05 by iportill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,160 @@ int create_mutex(t_list *d)
 	}
 	return (0);
 }
+long time_calculation(void)
+{
+	struct timeval	time;
+	long			actual_time;
+	
+	if(gettimeofday(&time, NULL) == -1)//man gettimeofday
+		printf("error al usar gettimeofday\n");
+	actual_time = (time.tv_sec * 1000) + (time.tv_usec / 1000);//tv_sec = segundos //tv.usec = microsegundos
+	return (actual_time);
+}
+int death_philo(t_list *d)
+{
+	size_t c;
+	long time;
+
+	c=0;
+	while (c < d->num_philo)
+	{
+		time = time_calculation() - d->s_time;
+		if(time - d->philo[c].last_eat > d->time_to_die)
+		{
+			if(d->stat == 0)
+			{
+				d->stat = 1;
+				printf("[%ld] [%ld] im die\n",time,c);
+			}
+			return(1);
+		}
+	}
+	return(0);
+}
+void ft_usleep(int condition)
+{
+	long start;
+	start = time_calculation();
+	while (time_calculation()- start < condition)
+	{
+		usleep(condition / 2);
+	}
+}
+int check_eats(t_list *d)
+{
+	size_t i;
+
+	i=0;
+	int x = 0;
+	if(d->philo_eats)
+		return(0);
+	while(i < d->num_philo)
+	{
+		if(d->philo[i].num_eats >= d->philo_eats)
+			x++;
+		else
+			break;
+		i++;
+	}
+	if(x >= d->num_philo)
+	{
+		d->stat = 2;
+		return(1);
+	}
+	return(0);
+}
+void wstatus(char *s,t_list *d,size_t i)
+{
+	long time;
+	pthread_mutex_lock(&d->mutex_msg);
+	time = time_calculation() - d->s_time;
+	if(i <= d->num_philo && check_eats(d) == 0 && d->stat == 0 )
+		printf("[%ld] [%ld] %s",time, i ,s);
+	pthread_mutex_unlock(&d->mutex_msg);
+}
+void ft_take_fork(t_list *d, size_t i)
+{
+	pthread_mutex_lock(&d->mutex[d->philo[i].fork_r]);
+	wstatus("has taken a fork\n",d,i+1);
+	if(d->num_philo == 1)
+		ft_usleep(d->time_to_die +1);
+	pthread_mutex_lock(&d->mutex[d->philo[i].fork_l]);
+	wstatus("has taken a fork\n",d,i+1);
+}
+void ft_eat(t_list *d,size_t i)
+{
+	wstatus("mis eating\n",d,i+1);
+	d->philo[i].num_eats ++;
+	ft_usleep(d->time_to_eat);
+	pthread_mutex_unlock(&d->mutex[d->philo[i].fork_l]);
+	pthread_mutex_unlock(&d->mutex[d->philo[i].fork_r]);
+	pthread_mutex_lock(&d->mutex_last_eat);
+	d->philo[i].last_eat = time_calculation() - d->s_time;
+	pthread_mutex_unlock(&d->mutex_last_eat);
+}
+void ft_sleep(t_list *d, size_t i)
+{
+	wstatus("mis sleeping\n",d,i+1);
+	ft_usleep(d->time_sleep);
+	wstatus("mis thinking\n",d,i+1);
+}
+static void ft_print_die(long t, size_t c)
+{
+	printf("[%ld] [%ld] die\n",t, c);
+}
+int routine(t_list *d)
+{
+	size_t i;
+
+	i=0;
+	pthread_mutex_lock(&d->mutex_i);//////////
+	i = d->id -1;
+	d->id++;
+	pthread_mutex_unlock(&d->mutex_i);/////////
+	if(i%2 == 0)
+		ft_usleep(d->time_to_eat/2);
+	while (d->stat == 0 || death_philo(d) == 0)
+	{
+		pthread_mutex_lock(&d->mutex_fork);
+		ft_take_fork(d,i);
+		pthread_mutex_unlock(&d->mutex_fork);
+		ft_eat(d,i);
+		ft_sleep(d,i);
+		if(d->num_philo % 2 != 0)
+			ft_usleep(d->time_sleep/3); 
+	}
+	return(0);
+}
+
+void *philo_routine(void *f)
+{
+	t_list *d;
+	d =(t_list *)f;
+	while (d->init_philo == 0)
+	{
+		usleep(10);
+	}
+	if(routine(d) == 1)
+		return(NULL);
+	return(NULL);
+}
+int create_thread(t_list *d)
+{
+	size_t i;
+
+	i=0;
+	while(i < d->num_philo)
+	{
+		pthread_mutex_lock(&d->mutex_last_eat);
+		d->philo[i].last_eat = 0;
+		pthread_mutex_unlock(&d->mutex_last_eat);
+		if(pthread_create(&d->thread[i],NULL,&philo_routine,(void*)d) != 0)
+			return(1);
+		i++;
+	}
+	return(0);
+}
 int init_values(t_list *d)
 {
 	//int i ;
@@ -104,14 +258,56 @@ int init_values(t_list *d)
 		return(1);
 	return(0);
 }
-long time_calculation()
+void ft_free(t_list *d)
 {
-	
+	size_t i;
+	i = 0;
+	while(i <= d->num_philo)
+	{
+		pthread_mutex_destroy(&d->mutex[i]);
+		i++;
+	}
+	i = 0;
+	if(d->num_philo == 1)
+		pthread_detach(d->thread[i]);
+	else
+	{
+		while(i <= d->num_philo)
+		{
+			pthread_detach(d->thread[i]);
+			i++;
+		}
+	}
 }
-/* int main_checker(t_list *d)
+int main_checker(t_list *d)
 {
+	size_t c;
+	long t;
 	
-} */
+	c = 0;
+	while(d->stat == 0)
+	{
+		while(c < d->num_philo)
+		{
+			t = time_calculation() - d->s_time;
+			if(t - d->philo[c].last_eat > d->time_to_die || check_eats(d) == 1)
+			{
+				if(d->stat == 2)
+				{
+					break;
+				}
+				d->stat = 1;
+				ft_print_die(t,c);
+				break;
+			}
+			c++;
+		}
+		c = 0;
+	}
+	ft_free(d);
+	return(0);
+}
+
 int start_table(t_list *d)
 {
 	if(pthread_mutex_init(&d->mutex_last_eat,NULL) != 0)
@@ -125,11 +321,14 @@ int start_table(t_list *d)
 	if(create_mutex(d)== 1)
 		return(1); 
 	 d->s_time = time_calculation();
-	/*if(create_thread(d) == 1)
+	if(create_thread(d) == 1)//peta
+	{
+		printf("fallo al crear los hios\n");
 		return(1);
+	}
 	d->init_philo = 1;//lo inicializas a 0 en init_values
 	main_checker(d);
-	*/
+	
 	return(0); 
 }
 
@@ -143,6 +342,7 @@ void print_d(t_list *d)
 		printf("d->time_to_eat = [%ld]\n",d->time_to_eat);
 		printf("d->time_to_sleep = [%ld]\n",d->time_to_sleep);
 		printf("d->philo_eats = [%ld]\n",d->philo_eats);
+		printf("d->s_time = [%ld]\n",d->s_time);
 	}
 }
 int set_struct(int argc,char **argv)

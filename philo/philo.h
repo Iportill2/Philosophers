@@ -6,7 +6,7 @@
 /*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 12:50:58 by iportill          #+#    #+#             */
-/*   Updated: 2023/12/28 16:44:40 by iportill         ###   ########.fr       */
+/*   Updated: 2023/12/29 12:10:05 by iportill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_philo//esta structura representa a cada philo
 
 typedef struct s_list
 {
+	size_t time_sleep;
 	pthread_mutex_t *mutex;
 	char *prueba;
 	size_t init_philo;
@@ -53,6 +54,17 @@ typedef struct s_list
 /*UTILS*/
 void* ft_calloc(size_t num, size_t size);
 int	ft_atoi(const char *str);
+int check_argv_num(t_list *d,char *argv,int pos);
+int create_mutex(t_list *d);
+long time_calculation(void);
+int death_philo(t_list *d);
+void ft_usleep(int condition);
+int routine(t_list *d);
+void *philo_routine(void *f);
+int create_thread(t_list *d);
+int init_values(t_list *d);
+int start_table(t_list *d);
+void print_d(t_list *d);
 int set_struct(int argc,char **argv);
 
 #endif

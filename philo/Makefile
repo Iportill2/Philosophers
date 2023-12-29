@@ -6,7 +6,7 @@
 #    By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/28 15:37:52 by iportill          #+#    #+#              #
-#    Updated: 2023/12/28 15:39:21 by iportill         ###   ########.fr        #
+#    Updated: 2023/12/29 12:17:39 by iportill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ INCLUDE = philo.h \
 CC = gcc
 RM = rm -f
 AR = ar rcs
-CFLAGS = -Wall -Wextra -Werror #-g3 -fsanitize=thread
+CFLAGS = -Wall -Wextra -Werror -lpthread#-g3 -fsanitize=thread
 
 %.o: %.c ${INCLUDE}
 			@echo "${BLUE} ◎ $(BROWN)Compiling   ${MAGENTA}→   $(CYAN)$< $(DEF_COLOR)"
