@@ -6,7 +6,7 @@
 /*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 12:51:03 by iportill          #+#    #+#             */
-/*   Updated: 2023/12/29 16:50:32 by iportill         ###   ########.fr       */
+/*   Updated: 2024/01/02 11:29:03 by iportill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -320,14 +320,15 @@ int start_table(t_list *d)
 		return(1);
 	if(create_mutex(d)== 1)
 		return(1); 
-	 d->s_time = time_calculation();
+	d->s_time = time_calculation();
 	if(create_thread(d) == 1)//peta
 	{
-		printf("fallo al crear los hios\n");
+		printf("fallo al crear los hilos\n");
 		return(1);
 	}
 	d->init_philo = 1;//lo inicializas a 0 en init_values
 	main_checker(d);
+	printf("HH\n");
 	
 	return(0); 
 }
@@ -358,6 +359,7 @@ int set_struct(int argc,char **argv)
 		i++;
 	}
 	print_d(d);
+	printf("jaja\n");
 	
 	if(start_table(d) == 1)
 		return(1);
