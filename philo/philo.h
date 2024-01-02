@@ -6,7 +6,7 @@
 /*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 12:50:58 by iportill          #+#    #+#             */
-/*   Updated: 2023/12/29 12:10:05 by iportill         ###   ########.fr       */
+/*   Updated: 2024/01/02 11:54:50 by iportill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <unistd.h>
 # include <sys/time.h>
 # include <pthread.h>
+# include <limits.h>
 
 typedef struct s_philo//esta structura representa a cada philo 
 {
@@ -54,7 +55,9 @@ typedef struct s_list
 /*UTILS*/
 void* ft_calloc(size_t num, size_t size);
 int	ft_atoi(const char *str);
+int	check_eats(t_list *d);
 int check_argv_num(t_list *d,char *argv,int pos);
+void	w_status(char *s, t_list *d, size_t i);
 int create_mutex(t_list *d);
 long time_calculation(void);
 int death_philo(t_list *d);
@@ -67,4 +70,6 @@ int start_table(t_list *d);
 void print_d(t_list *d);
 int set_struct(int argc,char **argv);
 
+void	main_checker(t_list *d);
+long	calc_time(void);
 #endif
