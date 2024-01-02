@@ -6,7 +6,7 @@
 /*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 12:50:21 by iportill          #+#    #+#             */
-/*   Updated: 2024/01/02 12:12:46 by iportill         ###   ########.fr       */
+/*   Updated: 2024/01/02 12:33:21 by iportill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ static int	check_num_arg(char *num_arg, int pos, t_list *d)
 	int	n;
 
 	n = ft_atoi(num_arg);
-	if (!n || n < 0 || (pos == 1 && n > 200) || (pos == 2 && n < 60)
+	printf(" [pos = %i][n = %d]\n",pos,n);
+	if (n == 0 || n < 0 || (pos == 1 && n > 200) || (pos == 2 && n < 60)
 		|| (pos == 3 && n < 60) || (pos == 4 && n < 60))
 	{
 		free(d);
@@ -41,9 +42,7 @@ static int	check_num_arg(char *num_arg, int pos, t_list *d)
 
 static	int	start_simulation(t_list *d)
 {
-	//int		c;
 
-	//c = 0;
 	pthread_mutex_init(&d->mutex_last_eat, NULL);
 	pthread_mutex_init(&d->mutex_stat, NULL);
 	d->stat = 0;
@@ -67,7 +66,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 5 && argc != 6)
 	{
-		write(1, "Numero de argumentos no valido.\n", 33);
+		printf("Invalid number of arguments\n");
 		return (0);
 	}
 	i = 1;

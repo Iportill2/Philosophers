@@ -6,7 +6,7 @@
 /*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 12:51:03 by iportill          #+#    #+#             */
-/*   Updated: 2024/01/02 12:08:46 by iportill         ###   ########.fr       */
+/*   Updated: 2024/01/02 12:30:47 by iportill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ int	ft_atoi(const char *str)
 	nbr = 0;
 	i = 0;
 	valorfinal = 1;
-	while (str[i] && ft_spaces(str[i]) == 0)
+	while (str[i] && ft_spaces(str[i]) == 1)
 		i++;
 	if (str[i] == '-' || str[i] == '+')
 	{
