@@ -6,41 +6,42 @@
 /*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 12:50:21 by iportill          #+#    #+#             */
-/*   Updated: 2024/01/02 12:33:21 by iportill         ###   ########.fr       */
+/*   Updated: 2024/01/02 12:54:21 by iportill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-static int	check_num_arg(char *num_arg, int pos, t_list *d)
+int	check_num_arg(char *num_arg, int pos, t_list *d)
 {
-	int	n;
+	int	value;
 
-	n = ft_atoi(num_arg);
-	printf(" [pos = %i][n = %d]\n",pos,n);
-	if (n == 0 || n < 0 || (pos == 1 && n > 200) || (pos == 2 && n < 60)
-		|| (pos == 3 && n < 60) || (pos == 4 && n < 60))
+	value = ft_atoi(num_arg);
+	if (value == 0 || value < 0 || (pos == 1 && value > 200)
+	 || (pos == 2 && value < 60)|| (pos == 3 && value < 60)
+	  || (pos == 4 && value < 60))
 	{
 		free(d);
-		write(1, "Numero incorrecto.\n", 20);
-		return (-1);
+		printf("Incorreect value of argument.\n");
+		return (1);
 	}
 	else
 	{
 		if (pos == 1)
-			d->num_philo = n;
+			d->num_philo = value;
 		if (pos == 2)
-			d->time_to_die = n;
+			d->time_to_die = value;
 		if (pos == 3)
-			d->time_to_eat = n;
+			d->time_to_eat = value;
 		if (pos == 4)
-			d->time_sleep = n;
+			d->time_sleep = value;
 		if (pos == 5)
-			d->philo_eats = n;
-		return (n);
+			d->philo_eats = value;
+		return (0);
 	}
+	return(0);
 }
 
-static	int	start_simulation(t_list *d)
+int	start_table(t_list *d)
 {
 
 	pthread_mutex_init(&d->mutex_last_eat, NULL);
@@ -51,7 +52,7 @@ static	int	start_simulation(t_list *d)
 		return (-1);
 	if (create_mutex(d) == -1)
 		return (-1);
-	d->s_time = calc_time();
+	d->s_time = time_calculation();
 	if (create_thread(d) == -1)
 		return (-1);
 	d->init_philo = 1;
@@ -70,16 +71,16 @@ int	main(int argc, char **argv)
 		return (0);
 	}
 	i = 1;
-	d = malloc(sizeof(t_list));
+	d = ft_calloc(sizeof(t_list), 1);
 	if (!d)
 		return (0);
 	while (i != argc)
 	{
-		if (check_num_arg(argv[i], i, d) < 0)
+		if (check_num_arg(argv[i], i, d) == 1)
 			return (0);
 		i++;
 	}
-	if (start_simulation(d) != 0)
+	if (start_table(d) != 0)
 		return (-1);
 	return (0);
 }

@@ -6,11 +6,20 @@
 /*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 12:51:03 by iportill          #+#    #+#             */
-/*   Updated: 2024/01/02 12:30:47 by iportill         ###   ########.fr       */
+/*   Updated: 2024/01/02 12:54:36 by iportill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+void* ft_calloc(size_t num, size_t size) 
+{
+    void* ptr = malloc(num * size);
+    if (ptr == NULL) 
+        return NULL;
+    memset(ptr, 0, num * size);
+    return (ptr);
+}
 
 int	create_mutex(t_list *d)
 {
@@ -48,7 +57,7 @@ void	w_status(char *s, t_list *d, size_t i)
 	long	time;
 
 	pthread_mutex_lock(&d->mutex_msg);
-	time = calc_time() - d->s_time;
+	time = time_calculation() - d->s_time;
 	if (i <= d->num_philo && check_eats(d) == 0 && d->stat == 0)
 	{
 		printf("\033[1;89m[%ld]	[%ld] \033[0;39m%s", time, i, s);
@@ -74,7 +83,7 @@ void	ft_eat(t_list *d, int i)
 	pthread_mutex_unlock(&d->mutex[d->philo[i].fork_l]);
 	pthread_mutex_unlock(&d->mutex[d->philo[i].fork_r]);
 	pthread_mutex_lock(&d->mutex_last_eat);
-	d->philo[i].last_eat = calc_time() - d->s_time;
+	d->philo[i].last_eat = time_calculation() - d->s_time;
 	pthread_mutex_unlock(&d->mutex_last_eat);
 }
 
@@ -215,7 +224,7 @@ void	main_checker(t_list *d)
 	{
 		while (c < d->num_philo)
 		{
-			t = calc_time() - d->s_time;
+			t = time_calculation() - d->s_time;
 			if (t - d->philo[c].last_eat > d->time_to_die || check_eats(d) == 1)
 			{
 				if (d->stat == 2)
@@ -241,7 +250,7 @@ int	death_philo(t_list *d)
 	c = 0;
 	while (c < d->num_philo)
 	{
-		time = calc_time() - d->s_time;
+		time = time_calculation() - d->s_time;
 		if (time - d->philo[c].last_eat > d->time_to_die)
 		{
 			if (d->stat == 0)
@@ -291,7 +300,7 @@ void	*philo_routine(void *f)
 		return (NULL);
 	return (NULL);
 }
-long	calc_time(void)
+long	time_calculation(void)
 {
 	struct timeval	time;
 	long			actual_time;
@@ -305,8 +314,8 @@ void	ft_usleep(int condition)
 {
 	long	start;
 
-	start = calc_time();
-	while (calc_time() - start < condition)
+	start = time_calculation();
+	while (time_calculation() - start < condition)
 	{
 		usleep(condition / 2);
 	}

@@ -6,7 +6,7 @@
 /*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 12:50:58 by iportill          #+#    #+#             */
-/*   Updated: 2024/01/02 12:29:53 by iportill         ###   ########.fr       */
+/*   Updated: 2024/01/02 12:54:40 by iportill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,5 @@ void print_d(t_list *d);
 int set_struct(int argc,char **argv);
 
 void	main_checker(t_list *d);
-long	calc_time(void);
+long	time_calculation(void);
 #endif
