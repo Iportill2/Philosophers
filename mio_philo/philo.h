@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   philo.h                                            :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/27 12:50:58 by iportill          #+#    #+#             */
-/*   Updated: 2024/01/02 14:45:04 by iportill         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef PHILO_H
 # define PHILO_H
 # include <string.h>
@@ -55,24 +43,27 @@ typedef struct s_list
 	long	s_time;//variable para guardar el tiempo del sistema
 }t_list;
 
-/*UTILS*/
-void* ft_calloc(size_t num, size_t size);
-int	ft_atoi(const char *str);
-int	check_eats(t_list *d);
-int check_argv_num(t_list *d,char *argv,int pos);
-void	w_status(char *s, t_list *d, size_t i);
-int create_mutex(t_list *d);
-long time_calculation(void);
-int death_philo(t_list *d);
-void ft_usleep(int condition);
-int routine(t_list *d);
-void *philo_routine(void *f);
-int create_thread(t_list *d);
+/*MAIN*/
+int main (int argc,char **argv);
+int ft_init_struct(char **argv);
+int argv_to_int(char **argv,int pos,t_list *d);
 int init_values(t_list *d);
 int start_table(t_list *d);
-void print_d(t_list *d);
-int set_struct(int argc,char **argv);
+//void ft_temp_free(char *temp);
+/*UTILS*/
+void* ft_calloc(size_t num, size_t size);
+size_t ft_strlen(const char *s);
+char *ft_strdup(const char *s);
+int	ft_atoi(const char *str);
+int	ft_spaces(char c);
+/*ERROR*/
+int error(t_list *d,int n);
 
-void	main_checker(t_list *d);
-long	time_calculation(void);
+void print_value(t_list *d);
+/*create_thread&mutex*/
+/* int create_mutex(t_list *d);
+int create_thread(t_list *d);
+void *philo_routine(void *f);
+int routine(t_list *d); */
+
 #endif

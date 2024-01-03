@@ -6,11 +6,12 @@
 /*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 12:50:21 by iportill          #+#    #+#             */
-/*   Updated: 2024/01/02 12:54:21 by iportill         ###   ########.fr       */
+/*   Updated: 2024/01/02 15:30:01 by iportill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
 int	check_num_arg(char *num_arg, int pos, t_list *d)
 {
 	int	value;
@@ -44,17 +45,16 @@ int	check_num_arg(char *num_arg, int pos, t_list *d)
 int	start_table(t_list *d)
 {
 
-	pthread_mutex_init(&d->mutex_last_eat, NULL);
-	pthread_mutex_init(&d->mutex_stat, NULL);
+	
 	d->stat = 0;
 	d->id = 1;
-	if (init_values(d) == -1)
-		return (-1);
-	if (create_mutex(d) == -1)
-		return (-1);
+	if (init_values(d) == 1)
+		return (1);
+	if (create_mutex(d) == 1)
+		return (1);
 	d->s_time = time_calculation();
-	if (create_thread(d) == -1)
-		return (-1);
+	if (create_thread(d) == 1)
+		return (1);
 	d->init_philo = 1;
 	main_checker(d);
 	return (0);
@@ -81,6 +81,6 @@ int	main(int argc, char **argv)
 		i++;
 	}
 	if (start_table(d) != 0)
-		return (-1);
+		return (1);
 	return (0);
 }

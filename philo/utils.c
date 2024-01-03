@@ -6,7 +6,7 @@
 /*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/27 12:51:03 by iportill          #+#    #+#             */
-/*   Updated: 2024/01/02 12:54:36 by iportill         ###   ########.fr       */
+/*   Updated: 2024/01/02 15:50:47 by iportill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	create_mutex(t_list *d)
 	while (i < d->num_philo)
 	{
 		if (pthread_mutex_init(&d->mutex[i], NULL) != 0)
-			return (-1);
+			return (1);
 		i++;
 	}
 	return (0);
@@ -46,7 +46,7 @@ int	create_thread(t_list *d)
 		d->philo[i].last_eat = 0;
 		pthread_mutex_unlock(&d->mutex_last_eat);
 		if (pthread_create(&d->thread[i], NULL, &philo_routine, (void *)d) != 0)
-			return (-1);
+			return (1);
 		i++;
 	}
 	return (0);
@@ -136,28 +136,30 @@ int	init_values(t_list *d)
 {
 	size_t	i;
 
-	d->init_philo = 0;
-	d->thread = malloc(sizeof(pthread_t *) * (d->num_philo));
-	if (!d->thread)
-		return (-1);
-	pthread_mutex_init(&d->mutex_i, NULL);
-	pthread_mutex_init(&d->mutex_msg, NULL);
-	pthread_mutex_init(&d->mutex_fork, NULL);
-	d->philo = malloc(sizeof(t_philo) * d->num_philo);
-	if (!d->philo)
-		return (-1);
-	d->mutex = malloc(sizeof(pthread_mutex_t) * d->num_philo);
-	if (!d->mutex)
-		return (-1);
+	d->init_philo = 0;//???
+	pthread_mutex_init(&d->mutex_last_eat, NULL);//mutex para last_eat
+	pthread_mutex_init(&d->mutex_stat, NULL);//mutex para stat
+	pthread_mutex_init(&d->mutex_i, NULL);// mutex para i
+	pthread_mutex_init(&d->mutex_msg, NULL);// mutex para msg
+	pthread_mutex_init(&d->mutex_fork, NULL);//mutex para fork
+	d->thread = ft_calloc(sizeof(pthread_t ) , (d->num_philo));
+	if (d->thread == NULL)
+		return (1);
+	d->philo = ft_calloc(sizeof(t_philo), d->num_philo);//reserva memoria para la estructura philo
+	if (d->philo == NULL)
+		return (1);
+	d->mutex = ft_calloc(sizeof(pthread_mutex_t) , d->num_philo);//reserva memoria para mutex
+	if (d->mutex == NULL)
+		return (1);
 	i = 0;
-	while (i < d->num_philo)
+	while (i < d->num_philo)//setea en 0 el num_eats,el numero de fork_r y fork_l
 	{
 		d->philo[i].num_eats = 0;
 		d->philo[i].fork_r = i - 1;
 		d->philo[i].fork_l = i;
 		i++;
 	}
-	d->philo[0].fork_r = d->num_philo - 1;
+	d->philo[0].fork_r = d->num_philo - 1;//establece que cada philo tendra 1 fork_r (para que empeice a contar desde el philo 1)
 	return (0);
 }
 
@@ -271,6 +273,7 @@ int	routine(t_list *d)
 	pthread_mutex_lock(&((t_list *)d)->mutex_i);
 	i = d->id - 1;
 	d->id++;
+
 	pthread_mutex_unlock(&((t_list *)d)->mutex_i);
 	if (i % 2 == 0)
 		ft_usleep(d->time_to_eat / 2);
