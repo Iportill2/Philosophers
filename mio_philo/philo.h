@@ -61,9 +61,10 @@ int error(t_list *d,int n);
 
 void print_value(t_list *d);
 /*create_thread&mutex*/
-/* int create_mutex(t_list *d);
+long	time_calc(void);
+int create_mutex(t_list *d);
 int create_thread(t_list *d);
 void *philo_routine(void *f);
-int routine(t_list *d); */
+int routine(t_list *d); 
 
 #endif

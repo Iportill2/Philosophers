@@ -2,6 +2,7 @@ NAME = philo
 
 SRCS =	main.c \
 		error.c \
+		create_thread_mutex.c \
 		utils.c
 		
 

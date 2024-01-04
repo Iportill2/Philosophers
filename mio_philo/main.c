@@ -11,7 +11,7 @@
 
 int start_table(t_list *d)
 {
-	int i =0;
+	//int i =0;
 	pthread_mutex_init(&d->mutex_last_eat,NULL);
 	pthread_mutex_init(&d->mutex_stat,NULL);
 	d->stat = 0;
@@ -23,7 +23,7 @@ int start_table(t_list *d)
 	d->s_time =time_calc();//crear la funcion
 	if(create_thread(d) == 1)
 		return(1);
-	main_checker(d);
+	//main_checker(d);
 	return(0);
 }
 int init_values(t_list *d)

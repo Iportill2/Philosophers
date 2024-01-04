@@ -1,6 +1,19 @@
 #include "philo.h"
 
+long	time_calc(void)
+{
+	struct timeval time;
+	long actualtime;
 
+	actualtime=0;
+	
+	
+	gettimeofday(&time,NULL);
+	actualtime=(time.tv_sec * 1000) + (time.tv_usec /1000);
+	printf("segundos = %ld,Microsegundos %ld\n",time.tv_sec,time.tv_usec);
+
+	return(actualtime);
+}
 
 int routine(t_list *d)
 {
@@ -10,16 +23,16 @@ int routine(t_list *d)
 	d -> id++;
 	pthread_mutex_lock(&((t_list*)d)->mutex_i);
 	if(i % 2 == 0)
-		ft_usleep((d->time_to_eat /2));
-	while(d->stat == 0 || death_philo(d) == 0)//hacer death philo
+		//ft_usleep((d->time_to_eat /2));
+	while(d->stat == 0 /* || death_philo(d) == 0 */)//hacer death philo
 	{
 		pthread_mutex_lock(&((t_list*)d)->mutex_fork);
-		ft_take_fork((t_list*)d,i);//hacer take_fork
+		//ft_take_fork((t_list*)d,i);//hacer take_fork
 		pthread_mutex_unlock(&((t_list*)d)->mutex_fork);
-		ft_eat((t_list*)d,i);//hacer ft_eat
-		ft_sleep((t_list*)d,i);//hacer ft_sleep
-		if(d->num_philo % 2 != 0 )
-			ft_usleep(d->time_sleep / 3);//hacer ft_usleep
+		//ft_eat((t_list*)d,i);//hacer ft_eat
+		//ft_sleep((t_list*)d,i);//hacer ft_sleep
+		//if(d->num_philo % 2 != 0 )
+			//ft_usleep(d->time_sleep / 3);//hacer ft_usleep
 	}
 	return(0);
 }
