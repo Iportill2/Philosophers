@@ -8,6 +8,55 @@
 		temp=NULL;
 	}
 } */
+void ft_free(t_list *d)
+{
+	size_t i =0;
+	while(i <= d->num_philo)
+	{
+		pthread_mutex_destroy(&d->mutex[i]);
+		i++;
+	}
+	i = 0;
+	if(d->num_philo == 1)
+		pthread_detach(d->thread[i]);
+	else
+		while(i < d->num_philo)
+		{
+			pthread_detach(d->thread[i]);
+			i++;
+		}
+}
+
+void ft_print_die(long t, size_t i)
+{
+	printf("[%ld] [%ld] DIE\n",t,i);
+}
+
+void main_checker(t_list *d)
+{
+	size_t i;
+	long t;
+
+	i=0;
+	while (d->stat == 0)
+	{
+		while (i < d->num_philo)
+		{
+			t = time_calc() - d->s_time;
+			if(t - d->philo[i].last_eat > d->time_to_die || check_eats(d) == 1)
+			{
+				if(d->stat == 2)
+					break;
+				d->stat = 1;
+				ft_print_die(t,i);
+				break;
+			}
+			i++;
+		}
+		i = 0;
+	}
+	ft_free(d);
+}
 
 int start_table(t_list *d)
 {
@@ -23,12 +72,12 @@ int start_table(t_list *d)
 	d->s_time =time_calc();//crear la funcion
 	if(create_thread(d) == 1)
 		return(1);
-	//main_checker(d);
+	main_checker(d);
 	return(0);
 }
 int init_values(t_list *d)
 {
-	//int i = 0;
+	size_t i = 0;
 	d->init_philo = 0;
 	d->thread = ft_calloc(sizeof(pthread_t),d->num_philo);
 	if(d->thread == NULL)
@@ -42,6 +91,14 @@ int init_values(t_list *d)
 	d->mutex = ft_calloc(sizeof(pthread_mutex_t),d->num_philo);//reservamos para pthread_t	*thread
 	if(d->mutex == NULL)
 		return(1);
+	while (i < d->num_philo)
+	{
+		d->philo[i].num_eats = 0;
+		d->philo[i].fork_r = i;
+		d->philo[i].fork_r = i+1;
+		i++;
+	}
+	d->philo[0].fork_r=d->num_philo -1;
 	return(0);
 
 }
@@ -89,6 +146,7 @@ int ft_init_struct(char **argv)
 		argv_to_int(argv,i,d);
 		i++;
 	}
+	
 	if(start_table(d) == 1)
 		error(d,2);
 	return(0);

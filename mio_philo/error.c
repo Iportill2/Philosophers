@@ -10,7 +10,7 @@ void print_value(t_list *d)
 	printf("******************************\n");
 }
 
-int ft_free(t_list *d)
+int ft_free_s(t_list *d)
 {
 	if(d->thread != NULL)
 		free(d->thread);
@@ -28,13 +28,13 @@ int error(t_list *d,int n)
 	{
 		printf("invalid value\n");
 		print_value(d);
-		ft_free(d);
+		ft_free_s(d);
 		exit(1);
 	}
 	if(n == 2)
 	{	
 		printf("error in start_table\n");
-		ft_free(d);
+		ft_free_s(d);
 		exit(1);
 	}
 	return(0);

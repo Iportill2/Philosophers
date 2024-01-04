@@ -44,6 +44,9 @@ typedef struct s_list
 }t_list;
 
 /*MAIN*/
+//void ft_free(t_list *d);
+void ft_print_die(long t, size_t i);
+void main_checker(t_list *d);
 int main (int argc,char **argv);
 int ft_init_struct(char **argv);
 int argv_to_int(char **argv,int pos,t_list *d);
@@ -57,10 +60,17 @@ char *ft_strdup(const char *s);
 int	ft_atoi(const char *str);
 int	ft_spaces(char c);
 /*ERROR*/
+int check_eats(t_list *d);
+int ft_free_s(t_list *d);
 int error(t_list *d,int n);
-
 void print_value(t_list *d);
 /*create_thread&mutex*/
+void ft_usleep(int condition);
+void ft_sleep(t_list *d, size_t i);
+void ft_eat(t_list *d,size_t i);
+void w_status(char *s,t_list *d,size_t i);
+void ft_take_fork(t_list *d, int i);
+int death_philo(t_list *d);
 long	time_calc(void);
 int create_mutex(t_list *d);
 int create_thread(t_list *d);
