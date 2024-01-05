@@ -10,9 +10,9 @@ long	time_calc(void)
 	
 	gettimeofday(&time,NULL);
 	actualtime=(time.tv_sec * 1000) + (time.tv_usec /1000);
-	printf("segundos = %ld,Microsegundos %ld\n",time.tv_sec,time.tv_usec);
-	printf("actualtime =  %ld\n",actualtime);
-	
+	/* printf("segundos = %ld,Microsegundos %ld\n",time.tv_sec,time.tv_usec);
+	printf("actualtime =  %ld\n",actualtime); */
+	//printf("time_calc\n");
 	return(actualtime);
 }
 
@@ -143,12 +143,12 @@ void *philo_routine(void *f)
 	d = (t_list *)f;
 	while(d->init_philo == 0)
 	{
-		if(usleep(10) == 0)
-			printf("philo_routine\n");
+		(usleep(10));
+			/* printf("philo_routine\n");
 		else
-			printf("fallo al ejecutar usleep en philo_routine\n");
+			printf("fallo al ejecutar usleep en philo_routine\n"); */
 	}
-	if(routine(d) == 1)
+	if(routine(d) == -1)
 		return(NULL);
 	return(NULL);
 }
@@ -189,3 +189,4 @@ int create_thread(t_list *d)
 	}
 	return(0);
 }
+

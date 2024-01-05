@@ -95,7 +95,7 @@ int init_values(t_list *d)
 	{
 		d->philo[i].num_eats = 0;
 		d->philo[i].fork_r = i;
-		d->philo[i].fork_r = i+1;
+		d->philo[i].fork_l = i+1;
 		i++;
 	}
 	d->philo[0].fork_r=d->num_philo -1;
@@ -114,7 +114,6 @@ int argv_to_int(char **argv,int pos,t_list *d)
 	  || (pos == 4 && value < 60))
 	{
 		error(d,1);
-
 	}
 	if(pos == 1)
 		d->num_philo=value;
