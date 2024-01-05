@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgoikoet <jgoikoet@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 15:39:51 by jgoikoet          #+#    #+#             */
-/*   Updated: 2024/01/04 17:44:30 by jgoikoet         ###   ########.fr       */
+/*   Updated: 2024/01/05 15:55:46 by iportill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,6 @@
 # include <pthread.h>
 # include <sys/time.h>
 
-# define W "\033[0m"
-# define R "\033[91m"
-# define G "\033[92m"
 
 typedef struct s_data
 {

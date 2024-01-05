@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_living.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgoikoet <jgoikoet@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/20 18:12:36 by jgoikoet          #+#    #+#             */
-/*   Updated: 2023/10/02 10:47:16 by jgoikoet         ###   ########.fr       */
+/*   Updated: 2024/01/05 15:55:55 by iportill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_dead(t_phi *f, int p_n)
 	{
 		f->d->ok = 0;
 		pthread_mutex_lock(&f->d->print);
-		printf(R"%lu %i died\n"W, ft_get_t() - f->d->time, p_n + 1);
+		printf("%lu %i died\n", ft_get_t() - f->d->time, p_n + 1);
 		pthread_mutex_unlock(&f->d->print);
 	}
 	pthread_mutex_unlock(&f->d->ded);
@@ -43,7 +43,7 @@ void	ft_eating(t_phi *f, int p_n)
 	f->d->t_left[p_n] = ft_get_t();
 	pthread_mutex_unlock(&f->d->get_t);
 	pthread_mutex_lock(&f->d->print);
-	printf(G"%lu %i is eating\n"W, ft_get_t() - f->d->time, p_n + 1);
+	printf("%lu %i is eating\n", ft_get_t() - f->d->time, p_n + 1);
 	pthread_mutex_unlock(&f->d->print);
 	pthread_mutex_lock(&f->d->eat);
 	f->d->eat_n[p_n] += 1;

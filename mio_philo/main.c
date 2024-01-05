@@ -153,7 +153,6 @@ int ft_init_struct(char **argv)
 
 int main (int argc,char **argv)
 {
-	(void)argv;
 	if(argc == 5 || argc == 6)
 	{
 		if(ft_init_struct(argv) == 1)

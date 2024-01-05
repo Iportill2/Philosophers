@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgoikoet <jgoikoet@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 10:50:33 by jgoikoet          #+#    #+#             */
-/*   Updated: 2023/09/26 12:26:06 by jgoikoet         ###   ########.fr       */
+/*   Updated: 2024/01/05 15:56:11 by iportill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	ft_error_spe(int argc, char **argv)
 	{
 		printf("0 1 has taken a fork\n");
 		ft_usleep(ft_atoi(argv[2]));
-		printf(R"%ld 1 died\n"W, ft_atoi(argv[2]));
+		printf("%ld 1 died\n", ft_atoi(argv[2]));
 		return (1);
 	}
 	if (ft_atoi(argv[1]) < 1)

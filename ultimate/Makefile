@@ -2,25 +2,16 @@ NAME = philo
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra -pthread
 CHECKER = checker
-SRC_FILES = main.c \
-			ft_wach.c \
-			ft_thread.c \
-			ft_living.c \
-			ft_error.c
+SRC_FILES = error.c \
+			live.c \
+			main.c \
+			thread.c \
+			watcher.c \
+			utils.c
+
 
 INCLUDE = philo.h
 
-CLR_RMV     := \033[0m
-GREEN := \033[1;32m
-RED := \033[1;31m
-define  ART
-$(GREEN)
- +-+-+-+-+-+-+-+-+-+-+-+-+
- |P|h|i|l|o|s|o|p|h|e|r|s|
- +-+-+-+-+-+-+-+-+-+-+-+-+                   
- $(CLR_RMV)
-endef
-export  ART
 
 OBJS = $(SRC_FILES:.c=.o)
 
@@ -31,7 +22,6 @@ all: lib $(NAME)
 
 $(NAME): $(OBJS) $(INCLUDE)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
-	echo "$$ART"
 
 clean:
 	rm -f $(OBJS)
