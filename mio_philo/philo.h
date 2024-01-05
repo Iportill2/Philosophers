@@ -9,7 +9,7 @@
 # include <limits.h>
 
 typedef struct s_philo//esta structura representa a cada philo 
-{
+{ 
 	size_t num_eats;//numero de veces que ha comido
 	size_t last_eat;//la ultima vez que comio
 	size_t fork_r;//mano r con tenedor(si cumple ambas puede comer)
@@ -19,7 +19,6 @@ typedef struct s_philo//esta structura representa a cada philo
 typedef struct s_list
 {
 	size_t time_sleep;
-	char *prueba;
 	size_t init_philo;
 	size_t stat;
 	size_t id;
@@ -38,7 +37,7 @@ typedef struct s_list
 	pthread_mutex_t mutex_last_eat;
 	pthread_mutex_t mutex_stat;
 	pthread_mutex_t mutex_i;
-	pthread_mutex_t mutex_msg;
+	pthread_mutex_t mutex_print;
 	pthread_mutex_t mutex_fork;
 	long	s_time;//variable para guardar el tiempo del sistema
 }t_list;
