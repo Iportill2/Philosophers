@@ -1,5 +1,47 @@
 #include "philo.h"
 
+int ft_struc_calloc(t_list *d)
+{
+	int	i;
+
+	d->fork = ft_calloc (sizeof(pthread_mutex_t) , d->n_f);
+	if (!d->fork)
+		return (1);
+	else
+		printf("d->fork creado con exito\n");
+	d->phi = ft_calloc (sizeof(pthread_t) , (d->n_f + 1));
+	if (!d->phi)
+		return (1);
+	else
+		printf("d->phi creado con exito\n");
+	d->eat_n = ft_calloc (sizeof(int) , d->n_f);
+	if (!d->eat_n)
+		return (1);
+	else
+		printf("d->eat_n creado con exito\n");
+	d->t_left = ft_calloc (sizeof(long) , d->n_f);
+	if (d->t_left == 0)
+		return (1);
+	else
+		printf("d->t_left creado con exito\n");
+	i = 0;
+	while (i < d->n_f)//hacer una funcion para recortar lineas
+	{
+		d->eat_n[i] = 0;
+		printf("d->eat_n[%i] = %d\n",i,d->eat_n[i]);//solo pruebas
+		i++;
+	}
+	i = 0;
+	while (i < d->n_f)
+	{
+		d->t_left[i] = d->time;
+		printf("d->t_left[%i] = %ld\n",i,d->t_left[i]);//solo pruebas
+		i++;
+	}
+	printf("ft_struc_calloc OK\n");//solo pruebas
+	return (0);
+}
+
 long int	ft_get_t(void)
 {
 	struct timeval	tv;
@@ -8,14 +50,16 @@ long int	ft_get_t(void)
 	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }
 
+
 int argv_to_int(char **argv,int pos,t_list *d)
 {
 	int value;
+
 	printf("[pos=%i]\n",pos);
 	value = ft_atoi(argv[pos]);
-	printf("[value=%i]\n",value);
+	printf("[value=%d]\n",value);
 
-	if (value == 0 || value < 0 || (pos == 1 && value > 200)
+	if (value == 0 || value < 0 ||(pos == 1 && value > 200)
 	 || (pos == 2 && value < 60)|| (pos == 3 && value < 60)
 	  || (pos == 4 && value < 60))
 	{
@@ -26,28 +70,25 @@ int argv_to_int(char **argv,int pos,t_list *d)
 		if(value == 1)
 			error(d,3);
 		else
-			d->n_f=(size_t)value;
+			d->n_f=value;
 	}
 	if(pos == 2)
-		d->t_d=(size_t)value;
+		d->t_d=value;
 	if(pos == 3)
-		d->t_e=(size_t)value;
+		d->t_e=value;
 	if(pos == 4)
-		d->t_s=(size_t)value;
+		d->t_s=value;
 	if(pos == 5)
 		d->nt_me=value;
 	else
 		d->nt_me= -1;
 	d->time = ft_get_t();
+	
 	d->ok = 1;
-	if(ft_struc_calloc(d) == 1)
-		return (printf("Error creating structure\n"), free (d), 0);
 
 	print_value(d);//
-	ft_thread(d);
-	free(d->fork);
-	free(d->phi);
-	return (free(d->eat_n), free(d->t_left), free(d), 0);
+	
+	return (0);
 }
 
 int ft_init_struct(char **argv)
@@ -65,7 +106,11 @@ int ft_init_struct(char **argv)
 		argv_to_int(argv,i,d);
 		i++;
 	}
-	
+	if(ft_struc_calloc(d) == 1)
+		return (printf("Error creating structure\n"), free (d), 0);
+	ft_thread(d);
+/* 	free(d->fork);
+	free(d->phi); */
 	/* if(start_table(d) == 1)
 		error(d,2); */
 	return(0);

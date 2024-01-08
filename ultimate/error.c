@@ -2,11 +2,12 @@
 
 void print_value(t_list *d)
 {
-	printf("d->num_philo=%ld\n",d->n_f);
-	printf("d->time_to_die=%ld\n",d->t_d);
-	printf("d->time_to_eat=%ld\n",d->t_e);
-	printf("d->time_to_sleep=%ld\n",d->t_s);
-	printf("d->philo_eats=%i\n",d->nt_me);
+	printf("d->n_f=%d\n",d->n_f);
+	printf("d->t_d=%ld\n",d->t_d);
+	printf("d->t_e=%ld\n",d->t_e);
+	printf("d->t_s=%ld\n",d->t_s);
+	printf("d->nt_me=%i\n",d->nt_me);
+	printf("d->time=%ld\n",d->time);
 	printf("******************************\n");
 }
 
