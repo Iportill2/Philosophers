@@ -32,7 +32,7 @@ typedef struct s_list
 
 typedef struct s_phi
 {
-	int				p_n;
+	size_t				p_n;
 	int				f1;
 	int				f2;
 	t_list			*d;

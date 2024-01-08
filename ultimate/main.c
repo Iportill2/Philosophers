@@ -26,14 +26,14 @@ int argv_to_int(char **argv,int pos,t_list *d)
 		if(value == 1)
 			error(d,3);
 		else
-			d->n_f=value;
+			d->n_f=(size_t)value;
 	}
 	if(pos == 2)
-		d->t_d=value;
+		d->t_d=(size_t)value;
 	if(pos == 3)
-		d->t_e=value;
+		d->t_e=(size_t)value;
 	if(pos == 4)
-		d->t_s=value;
+		d->t_s=(size_t)value;
 	if(pos == 5)
 		d->nt_me=value;
 	else
