@@ -1,6 +1,6 @@
 #include "philo.h"
 
-void	ft_whach_nt_me(t_phi *f)
+void	ft_watcher_nt_me(t_phi *f)
 {
 	int	i;
 	int	c;
@@ -22,7 +22,7 @@ void	ft_whach_nt_me(t_phi *f)
 	}
 }
 
-void	ft_whach_t_d(t_phi *f)
+void	ft_watcher_t_d(t_phi *f)
 {
 	int	i;
 
@@ -40,13 +40,13 @@ void	ft_whach_t_d(t_phi *f)
 	}
 }
 
-void	ft_whach(t_phi *f)
+void	ft_watcher(t_phi *f)
 {
 	while (ft_check_ok(f))
 	{
 		usleep(100);
 		if (f->d->nt_me != -1)
-			ft_whach_nt_me(f);
-		ft_whach_t_d(f);
+			ft_watcher_nt_me(f);
+		ft_watcher_t_d(f);
 	}
 }

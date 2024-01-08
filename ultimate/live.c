@@ -19,7 +19,8 @@ void	ft_dead(t_phi *f, int p_n)
 	{
 		f->d->ok = 0;
 		pthread_mutex_lock(&f->d->print);
-		printf("%lu %i died\n", ft_get_t() - f->d->time, p_n + 1);
+		printf("Elapsed run time%lu\nPhilo nº%i died ☠️\n\n", ft_get_t() - f->d->time, p_n + 1);
+		
 		pthread_mutex_unlock(&f->d->print);
 	}
 	pthread_mutex_unlock(&f->d->ded);
@@ -31,7 +32,7 @@ void	ft_eating(t_phi *f, int p_n)
 	f->d->t_left[p_n] = ft_get_t();
 	pthread_mutex_unlock(&f->d->get_t);
 	pthread_mutex_lock(&f->d->print);
-	printf("%lu %i is eating\n", ft_get_t() - f->d->time, p_n + 1);
+	printf(G"Elapsed run time%lu\nPhilo nº%i is eating🍜\n\n"W, ft_get_t() - f->d->time, p_n + 1);
 	pthread_mutex_unlock(&f->d->print);
 	pthread_mutex_lock(&f->d->eat);
 	f->d->eat_n[p_n] += 1;
@@ -47,14 +48,14 @@ void	ft_eat(t_phi *f)
 	if (ft_check_ok(f))
 	{
 		pthread_mutex_lock(&f->d->print);
-		printf("%lu %i has taken a fork\n", ft_get_t() - f->d->time, f->p_n + 1);
+		printf("Elapsed run time%lu\nPhilo nº%i has taken a right fork 🍴\n\n", ft_get_t() - f->d->time, f->p_n + 1);
 		pthread_mutex_unlock(&f->d->print);
 	}		
 	pthread_mutex_lock(&f->d->fork[f->f2]);
 	if (ft_check_ok(f))
 	{
 		pthread_mutex_lock(&f->d->print);
-		printf("%lu %i has taken a fork\n", ft_get_t() - f->d->time, f->p_n + 1);
+		printf("Elapsed run time%lu\nPhilo nº%i has taken a left fork 🍴🍴\n\n", ft_get_t() - f->d->time, f->p_n + 1);
 		pthread_mutex_unlock(&f->d->print);
 	}
 	if (ft_check_ok(f))
@@ -69,14 +70,14 @@ void	ft_live(t_phi *f)
 		if (ft_check_ok(f))
 		{
 			pthread_mutex_lock(&f->d->print);
-			printf("%lu %i is sleeping\n", ft_get_t() - f->d->time, f->p_n + 1);
+			printf("Elapsed run time%lu\nPhilo nº%i is sleeping😴\n\n", ft_get_t() - f->d->time, f->p_n + 1);
 			pthread_mutex_unlock(&f->d->print);
 			ft_usleep(f->d->t_s);
 		}
 		if (ft_check_ok(f))
 		{
 			pthread_mutex_lock(&f->d->print);
-			printf ("%lu %i is thinking\n", ft_get_t() - f->d->time, f->p_n + 1);
+			printf ("Elapsed run time%lu\nPhilo nº%i is thinking🙇🏻💭\n\n", ft_get_t() - f->d->time, f->p_n + 1);
 			pthread_mutex_unlock(&f->d->print);
 		}
 	}

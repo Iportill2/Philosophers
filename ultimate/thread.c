@@ -20,7 +20,7 @@ void	*ft_born(void *arg)
 		f->f2 = f->p_n + 1;
 	if (f->p_n == f->d->n_f)
 	{
-		ft_whach(f);
+		ft_watcher(f);
 		//printf("ft_whach(f);\n");
 	}
 	if (f->p_n % 2 == 0 && f->p_n != f->d->n_f)

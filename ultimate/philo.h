@@ -57,10 +57,10 @@ int		ft_thread(t_list *d);
 void	*ft_born(void *arg);
 void	ft_usleep(size_t t);
 
-/*WHACH*/
-void	ft_whach_nt_me(t_phi *f);
-void	ft_whach_t_d(t_phi *f);
-void	ft_whach(t_phi *f);
+/*WATCHER*/
+void	ft_watcher_nt_me(t_phi *f);
+void	ft_watcher_t_d(t_phi *f);
+void	ft_watcher(t_phi *f);
 
 /*LIVING*/
 int	ft_check_ok(t_phi *f);
