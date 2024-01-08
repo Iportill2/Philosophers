@@ -19,7 +19,7 @@ void	ft_dead(t_phi *f, int p_n)
 	{
 		f->d->ok = 0;
 		pthread_mutex_lock(&f->d->print);
-		printf("Elapsed run time%lu\nPhilo nº%i died ☠️\n\n", ft_get_t() - f->d->time, p_n + 1);
+		printf(R"Elapsed run time%lu\nPhilo nº%i died ☠️\n\n"W, ft_get_t() - f->d->time, p_n + 1);
 		
 		pthread_mutex_unlock(&f->d->print);
 	}
@@ -48,14 +48,14 @@ void	ft_eat(t_phi *f)
 	if (ft_check_ok(f))
 	{
 		pthread_mutex_lock(&f->d->print);
-		printf("Elapsed run time%lu\nPhilo nº%i has taken a right fork 🍴\n\n", ft_get_t() - f->d->time, f->p_n + 1);
+		printf(LC"Elapsed run time%lu\nPhilo nº%i has taken a right fork 🍴\n\n"W, ft_get_t() - f->d->time, f->p_n + 1);
 		pthread_mutex_unlock(&f->d->print);
 	}		
 	pthread_mutex_lock(&f->d->fork[f->f2]);
 	if (ft_check_ok(f))
 	{
 		pthread_mutex_lock(&f->d->print);
-		printf("Elapsed run time%lu\nPhilo nº%i has taken a left fork 🍴🍴\n\n", ft_get_t() - f->d->time, f->p_n + 1);
+		printf(B"Elapsed run time%lu\nPhilo nº%i has taken a left fork 🍴🍴\n\n"W, ft_get_t() - f->d->time, f->p_n + 1);
 		pthread_mutex_unlock(&f->d->print);
 	}
 	if (ft_check_ok(f))
@@ -70,14 +70,14 @@ void	ft_live(t_phi *f)
 		if (ft_check_ok(f))
 		{
 			pthread_mutex_lock(&f->d->print);
-			printf("Elapsed run time%lu\nPhilo nº%i is sleeping😴\n\n", ft_get_t() - f->d->time, f->p_n + 1);
+			printf(Y"Elapsed run time%lu\nPhilo nº%i is sleeping😴\n\n"W, ft_get_t() - f->d->time, f->p_n + 1);
 			pthread_mutex_unlock(&f->d->print);
 			ft_usleep(f->d->t_s);
 		}
 		if (ft_check_ok(f))
 		{
 			pthread_mutex_lock(&f->d->print);
-			printf ("Elapsed run time%lu\nPhilo nº%i is thinking🙇🏻💭\n\n", ft_get_t() - f->d->time, f->p_n + 1);
+			printf (O"Elapsed run time%lu\nPhilo nº%i is thinking🙇🏻💭\n\n"W, ft_get_t() - f->d->time, f->p_n + 1);
 			pthread_mutex_unlock(&f->d->print);
 		}
 	}

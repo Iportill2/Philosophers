@@ -8,6 +8,14 @@
 # include <limits.h>
 # include <string.h>
 
+#define W "\033[0m"    // Reset (blanco)
+#define R "\033[91m"   // Rojo
+#define G "\033[92m"   // Verde
+#define B "\033[94m"   // Azul
+#define O "\033[93m"   // Naranja
+#define Y "\033[33m"   // Amarillo
+#define LC "\033[96m"  // Azul claro
+
 typedef struct s_list
 {
 	size_t			ok;
