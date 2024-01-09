@@ -13,22 +13,22 @@ void	*watch_phi_rou(void *born)
 	t_phi	*f;
 
 	f = (t_phi *)born;
-	f->f1 = f->p_n;
-	if (f->p_n == f->d->n_f - 1)
+	f->f1 = f->phi_id;
+	if (f->phi_id == f->d->n_f - 1)
 		f->f2 = 0;
 	else
-		f->f2 = f->p_n + 1;
-	if (f->p_n == f->d->n_f)
+		f->f2 = f->phi_id + 1;
+	if (f->phi_id == f->d->n_f)
 	{
 		ft_watcher(f);
 		//printf("ft_whach(f);\n");
 	}
-	if (f->p_n % 2 == 0 && f->p_n != f->d->n_f)
+	if (f->phi_id % 2 == 0 && f->phi_id != f->d->n_f)
 	{
 		ft_live(f);
 		//printf("1ft_live(f);\n");
 	}
-	else if (f->p_n % 2 != 0 && f->p_n != f->d->n_f)
+	else if (f->phi_id % 2 != 0 && f->phi_id != f->d->n_f)
 	{
 		usleep((10) * 1000);
 		ft_live(f);
@@ -41,6 +41,7 @@ void	*watch_phi_rou(void *born)
 void	ft_mutex_init(t_list *d)
 {
 	int	i;
+
 
 	i = 0;
 	while (i < d->n_f)
@@ -86,7 +87,7 @@ int	ft_thread(t_list *d)
 		f =ft_calloc (sizeof(t_phi),1);
 		if(f == NULL)
 			return(1);
-		f->p_n = i;
+		f->phi_id = i;
 		f->d = d;
 		if (pthread_create(&d->phi[i], NULL, &watch_phi_rou, f) != 0)//hacer funcion
 			return (1);

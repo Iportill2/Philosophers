@@ -6,7 +6,7 @@
 /*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 15:39:51 by jgoikoet          #+#    #+#             */
-/*   Updated: 2024/01/05 15:55:46 by iportill         ###   ########.fr       */
+/*   Updated: 2024/01/09 15:39:23 by iportill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,13 @@
 # include <pthread.h>
 # include <sys/time.h>
 
+# define WW "\033[0m"    // Reset (blanco)
+# define RR "\033[91m"   // Rojo
+# define GG "\033[92m"   // Verde
+# define BB "\033[94m"   // Azul
+# define OO "\033[93m"   // Naranja
+# define YY "\033[33m"   // Amarillo
+# define CC "\033[96m"  // Azul claro
 
 typedef struct s_data
 {

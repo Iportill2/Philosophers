@@ -51,8 +51,8 @@ int error(t_list *d,int n)
 	}
 	if(n == 4)
 	{
-		printf(LC"Elapsed run time 0\nPhilo nº1 has taken a right fork 🍴\n\n"W);
-		printf(R"Elapsed run time %ld\nPhilo nº1 died ☠️\n"W,d->t_d);
+		printf(CC"Elapsed run time 0\nPhilo nº1 has taken a right fork 🍴\n\n"WW);
+		printf(RR"Elapsed run time %ld\nPhilo nº1 died ☠️\n"WW,d->t_d);
 		free(d);
 		exit(1);
 	}

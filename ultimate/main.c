@@ -74,8 +74,8 @@ int argv_to_int(char **argv,int pos,t_list *d)
 		d->nt_me=value;
 	else
 		d->nt_me= -1;//si argv5 no existe setea nt_me en -1
-	d->time = ft_get_t();
 	d->ok = 1;
+	d->time = ft_get_t();
 	print_value(d);//
 	return (0);
 }
@@ -97,6 +97,7 @@ int ft_init_struct(char **argv)
 	}
 	if(d->n_f == 1)
 		error(d,4);
+	
 	if(ft_struc_calloc(d) == 1)
 		return (printf("Error creating structure\n"), free (d), 1);
 	ft_thread(d);

@@ -10,15 +10,17 @@ void	ft_watcher_nt_me(t_phi *f)
 	while (i < f->d->n_f)
 	{
 		pthread_mutex_lock(&f->d->eat);
-		if (f->d->eat_n[i++] >= f->d->nt_me)
+		if (f->d->eat_n[i] >= f->d->nt_me)
 			c++;
 		pthread_mutex_unlock(&f->d->eat);
+		i++;
 	}
 	if (c == f->d->n_f)
 	{
 		pthread_mutex_lock(&f->d->ded);
 		f->d->ok = 0;
 		pthread_mutex_unlock(&f->d->ded);
+		printf(RR"All the philosophers ate %d times!!\n"WW,f->d->nt_me);
 	}
 }
 
