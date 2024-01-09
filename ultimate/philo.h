@@ -28,14 +28,16 @@ typedef struct s_list
 	int			nt_me;
 
 	long			time;
+	
 	int				*eat_n;
 	long			*t_left;
 	pthread_t		*phi;
+	pthread_mutex_t	*fork;
+
 	pthread_mutex_t	get_t;
 	pthread_mutex_t	print;
 	pthread_mutex_t	ded;
 	pthread_mutex_t	eat;
-	pthread_mutex_t	*fork;
 }				t_list;
 
 typedef struct s_phi

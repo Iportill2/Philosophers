@@ -49,5 +49,12 @@ int error(t_list *d,int n)
 			exit(1);
 		}
 	}
+	if(n == 4)
+	{
+		printf(LC"Elapsed run time 0\nPhilo nº1 has taken a right fork 🍴\n\n"W);
+		printf(R"Elapsed run time %ld\nPhilo nº1 died ☠️\n"W,d->t_d);
+		free(d);
+		exit(1);
+	}
 	return(0);
 }

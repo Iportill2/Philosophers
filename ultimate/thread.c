@@ -84,6 +84,8 @@ int	ft_thread(t_list *d)
 	while (i <= d->n_f)
 	{
 		f =ft_calloc (sizeof(t_phi),1);
+		if(f == NULL)
+			return(1);
 		f->p_n = i;
 		f->d = d;
 		if (pthread_create(&d->phi[i], NULL, &ft_born, f) != 0)//hacer funcion
