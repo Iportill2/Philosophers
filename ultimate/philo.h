@@ -64,7 +64,7 @@ int 	error(t_list *d,int n);
 void	ft_mutex_init(t_list *d);
 void	ft_mutex_destroy(t_list *d);
 int		ft_thread(t_list *d);
-void	*ft_born(void *arg);
+void	*watch_phi_rou(void *born);
 void	ft_usleep(size_t t);
 
 /*WATCHER*/

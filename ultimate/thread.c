@@ -8,11 +8,11 @@ void	ft_usleep(size_t t)
 		usleep(500);
 }
 
-void	*ft_born(void *arg)
+void	*watch_phi_rou(void *born)
 {
 	t_phi	*f;
 
-	f = (t_phi *)arg;
+	f = (t_phi *)born;
 	f->f1 = f->p_n;
 	if (f->p_n == f->d->n_f - 1)
 		f->f2 = 0;
@@ -88,7 +88,7 @@ int	ft_thread(t_list *d)
 			return(1);
 		f->p_n = i;
 		f->d = d;
-		if (pthread_create(&d->phi[i], NULL, &ft_born, f) != 0)//hacer funcion
+		if (pthread_create(&d->phi[i], NULL, &watch_phi_rou, f) != 0)//hacer funcion
 			return (1);
 		i++;
 	}
