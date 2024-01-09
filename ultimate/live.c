@@ -32,7 +32,7 @@ void	ft_eating(t_phi *f, int p_n)
 	f->d->t_left[p_n] = ft_get_t();
 	pthread_mutex_unlock(&f->d->get_t);
 	pthread_mutex_lock(&f->d->print);
-	printf(GG"Elapsed run time %lu\nPhilo nº%i is eating🍜\n\n"WW, ft_get_t() - f->d->time, p_n + 1);
+	printf(GG"Elapsed run time %lu\nPhilo nº%i is eating 🍜\n\n"WW, ft_get_t() - f->d->time, p_n + 1);
 	pthread_mutex_unlock(&f->d->print);
 	pthread_mutex_lock(&f->d->eat);
 	f->d->eat_n[p_n] += 1;
@@ -55,7 +55,7 @@ void	ft_eat(t_phi *f)
 	if (ft_check_ok(f))
 	{
 		pthread_mutex_lock(&f->d->print);
-		printf(BB"Elapsed run time %lu\nPhilo nº%i has taken a left fork 🍴🍴\n\n"WW, ft_get_t() - f->d->time, f->phi_id + 1);
+		printf(BB"Elapsed run time %lu\nPhilo nº%i has taken a left fork 🍴🥄\n\n"WW, ft_get_t() - f->d->time, f->phi_id + 1);
 		pthread_mutex_unlock(&f->d->print);
 	}
 	if (ft_check_ok(f))
@@ -70,14 +70,14 @@ void	ft_live(t_phi *f)
 		if (ft_check_ok(f))
 		{
 			pthread_mutex_lock(&f->d->print);
-			printf(YY"Elapsed run time %lu\nPhilo nº%i is sleeping😴\n\n"WW, ft_get_t() - f->d->time, f->phi_id + 1);
+			printf(YY"Elapsed run time %lu\nPhilo nº%i is sleeping 💤\n\n"WW, ft_get_t() - f->d->time, f->phi_id + 1);
 			pthread_mutex_unlock(&f->d->print);
 			ft_usleep(f->d->t_s);
 		}
 		if (ft_check_ok(f))
 		{
 			pthread_mutex_lock(&f->d->print);
-			printf (OO"Elapsed run time %lu\nPhilo nº%i is thinking🙇🏻💭\n\n"WW, ft_get_t() - f->d->time, f->phi_id + 1);
+			printf (OO"Elapsed run time %lu\nPhilo nº%i is thinking 🤦\n\n"WW, ft_get_t() - f->d->time, f->phi_id + 1);
 			pthread_mutex_unlock(&f->d->print);
 		}
 	}
