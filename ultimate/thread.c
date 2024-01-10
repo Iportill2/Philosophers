@@ -3,8 +3,8 @@ void	ft_usleep(size_t t)
 {
 	size_t	start;
 
-	start = ft_get_t();
-	while ((ft_get_t() - start) < t)
+	start = get_time();
+	while ((get_time() - start) < t)
 		usleep(500);
 }
 

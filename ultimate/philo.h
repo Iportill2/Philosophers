@@ -18,10 +18,10 @@
 
 typedef struct s_list //d
 {
-	size_t			ok;
+	size_t			stop;
 
 	int 			n_f;
-	long			t_d;
+	size_t			t_d;
 	size_t			t_e;
 	size_t			t_s;
 
@@ -30,7 +30,7 @@ typedef struct s_list //d
 	long			time;
 	
 	int				*eat_n;
-	long			*t_left;
+	size_t			*t_left;
 	pthread_t		*phi;
 	pthread_mutex_t	*fork;
 
@@ -49,12 +49,11 @@ typedef struct s_phi //f
 }				t_phi;
 
 /*MAIN*/
-long int	ft_get_t(void);
-int 		argv_to_int(char **argv,int pos,t_list *d);
-int			ft_init_struct(char **argv);
-int			main(int argc, char **argv);
-int 		ft_struc_calloc(t_list *d);
-
+size_t	get_time(void);
+int 	argv_to_int(char **argv,int pos,t_list *d);
+int		ft_init_struct(char **argv);
+int		main(int argc, char **argv);
+int 	ft_struc_calloc(t_list *d);
 
 /*ERROR*/
 void	print_value(t_list *d);
@@ -71,6 +70,7 @@ void	ft_usleep(size_t t);
 void	ft_watcher_nt_me(t_phi *f);
 void	ft_watcher_t_d(t_phi *f);
 void	ft_watcher(t_phi *f);
+void 	ft_struc_calloc_bis(t_list *d);
 
 /*LIVING*/
 int		ft_check_ok(t_phi *f);

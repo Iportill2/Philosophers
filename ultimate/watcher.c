@@ -18,7 +18,7 @@ void	ft_watcher_nt_me(t_phi *f)
 	if (c == f->d->n_f)
 	{
 		pthread_mutex_lock(&f->d->dead);
-		f->d->ok = 1;//lo ponemos para que terminen los hilos despues de imprimir el mensaje, sino corta la rutina 
+		f->d->stop = 1;//lo ponemos para que terminen los hilos despues de imprimir el mensaje, sino corta la rutina 
 		pthread_mutex_unlock(&f->d->dead);
 		printf(RR"All the philosophers ate %d times!!\n"WW,f->d->nt_me);
 	}
@@ -32,7 +32,7 @@ void	ft_watcher_t_d(t_phi *f)
 	while (ft_check_ok(f) == 1 && i < f->d->n_f)
 	{
 		pthread_mutex_lock(&f->d->get_t);
-		if ((ft_get_t() - f->d->t_left[i]) >= f->d->t_d)
+		if ((get_time() - f->d->t_left[i]) >= f->d->t_d)
 		{
 			ft_dead(f, i);
 			//printf("ft_dead(f,i);\n");
@@ -51,4 +51,25 @@ void	ft_watcher(t_phi *f)
 			ft_watcher_nt_me(f);
 		ft_watcher_t_d(f);
 	}
+}
+void ft_struc_calloc_bis(t_list *d)
+{
+	int	i;
+
+	i = 0;
+	while (i < d->n_f)//hacer una funcion para recortar lineas
+	{
+		d->eat_n[i] = 0;//setea a 0 el numero de veces que a comido cada filosofo
+		printf("d->eat_n[%i] = %d\n",i,d->eat_n[i]);//solo pruebas
+		i++;
+	}
+	i = 0;
+	while (i < d->n_f)
+	{
+		d->t_left[i] = d->time;//setea el tiempo actual en d->t_left
+		printf("d->t_left[%i] = %ld\n",i,d->t_left[i]);//solo pruebas
+		i++;
+	}
+	printf("ft_struc_calloc OK\n");//solo pruebas
+	return ;
 }
