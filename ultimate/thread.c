@@ -26,7 +26,7 @@ void	*watch_phi_rou(void *born)
 	if (f->phi_id % 2 == 0 && f->phi_id != f->d->n_f)
 	{
 		ft_live(f);
-		//printf("1ft_live(f);\n");
+		//printf("1ft_live(f);\n"); 
 	}
 	else if (f->phi_id % 2 != 0 && f->phi_id != f->d->n_f)
 	{
