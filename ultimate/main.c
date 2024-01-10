@@ -1,6 +1,26 @@
 #include "philo.h"
 
+void ft_struc_calloc_bis(t_list *d)
+{
+	int	i;
 
+	i = 0;
+	while (i < d->n_f)//hacer una funcion para recortar lineas
+	{
+		d->eat_n[i] = 0;//setea a 0 el numero de veces que a comido cada filosofo
+		//printf("d->eat_n[%i] = %d\n",i,d->eat_n[i]);//solo pruebas
+		i++;
+	}
+	i = 0;
+	while (i < d->n_f)
+	{
+		d->t_left[i] = d->time;//setea el tiempo actual en d->t_left
+		//printf("d->t_left[%i] = %ld\n",i,d->t_left[i]);//solo pruebas
+		i++;
+	}
+	printf("ft_struc_calloc OK\n");//solo pruebas
+	return ;
+}
 
 int ft_struc_calloc(t_list *d)
 {
@@ -29,15 +49,6 @@ int ft_struc_calloc(t_list *d)
 	return(0);
 }
 
-size_t	get_time(void)
-{
-	struct timeval	tv;
-
-	gettimeofday(&tv, NULL);
-	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
-}
-
-
 int argv_to_int(char **argv,int pos,t_list *d)
 {
 	int value;
@@ -63,7 +74,7 @@ int argv_to_int(char **argv,int pos,t_list *d)
 		d->nt_me= -1;//si argv5 no existe setea nt_me en -1
 	d->stop = 0;//si ok esta en 0 el programa sigue, sino para
 	d->time = get_time();
-	print_value(d);//
+	//print_value(d);//
 	return (0);
 }
 

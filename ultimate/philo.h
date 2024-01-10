@@ -49,11 +49,11 @@ typedef struct s_phi //f
 }				t_phi;
 
 /*MAIN*/
-size_t	get_time(void);
 int 	argv_to_int(char **argv,int pos,t_list *d);
 int		ft_init_struct(char **argv);
 int		main(int argc, char **argv);
 int 	ft_struc_calloc(t_list *d);
+void 	ft_struc_calloc_bis(t_list *d);
 
 /*ERROR*/
 void	print_value(t_list *d);
@@ -67,10 +67,10 @@ void	*watch_phi_rou(void *born);
 void	ft_usleep(size_t t);
 
 /*WATCHER*/
+size_t	get_time(void);
 void	ft_watcher_nt_me(t_phi *f);
 void	ft_watcher_t_d(t_phi *f);
 void	ft_watcher(t_phi *f);
-void 	ft_struc_calloc_bis(t_list *d);
 
 /*LIVING*/
 int		ft_check_ok(t_phi *f);

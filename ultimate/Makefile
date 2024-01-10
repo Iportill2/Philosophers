@@ -1,6 +1,6 @@
 NAME = philo
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -pthread
+CFLAGS = -Wall -Werror -Wextra -pthread -g3 -fsanitize=thread 
 CHECKER = checker
 SRC_FILES = error.c \
 			live.c \
@@ -14,6 +14,8 @@ INCLUDE = philo.h
 
 
 OBJS = $(SRC_FILES:.c=.o)
+
+.SILENT:
 
 all: lib $(NAME)
 

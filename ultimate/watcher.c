@@ -52,24 +52,11 @@ void	ft_watcher(t_phi *f)
 		ft_watcher_t_d(f);
 	}
 }
-void ft_struc_calloc_bis(t_list *d)
-{
-	int	i;
 
-	i = 0;
-	while (i < d->n_f)//hacer una funcion para recortar lineas
-	{
-		d->eat_n[i] = 0;//setea a 0 el numero de veces que a comido cada filosofo
-		printf("d->eat_n[%i] = %d\n",i,d->eat_n[i]);//solo pruebas
-		i++;
-	}
-	i = 0;
-	while (i < d->n_f)
-	{
-		d->t_left[i] = d->time;//setea el tiempo actual en d->t_left
-		printf("d->t_left[%i] = %ld\n",i,d->t_left[i]);//solo pruebas
-		i++;
-	}
-	printf("ft_struc_calloc OK\n");//solo pruebas
-	return ;
+size_t	get_time(void)
+{
+	struct timeval	tv;
+
+	gettimeofday(&tv, NULL);
+	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
 }
