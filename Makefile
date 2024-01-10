@@ -1,6 +1,7 @@
 NAME = philo
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -pthread -g3 -fsanitize=thread 
+CFLAGS = -Wall -Werror -Wextra  -g3 -fsanitize=address #-pthread
+
 CHECKER = checker
 SRC_FILES = error.c \
 			live.c \
