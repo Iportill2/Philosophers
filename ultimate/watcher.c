@@ -17,9 +17,9 @@ void	ft_watcher_nt_me(t_phi *f)
 	}
 	if (c == f->d->n_f)
 	{
-		pthread_mutex_lock(&f->d->ded);
-		f->d->ok = 0;
-		pthread_mutex_unlock(&f->d->ded);
+		pthread_mutex_lock(&f->d->dead);
+		f->d->ok = 1;//lo ponemos para que terminen los hilos despues de imprimir el mensaje, sino corta la rutina 
+		pthread_mutex_unlock(&f->d->dead);
 		printf(RR"All the philosophers ate %d times!!\n"WW,f->d->nt_me);
 	}
 }
@@ -29,7 +29,7 @@ void	ft_watcher_t_d(t_phi *f)
 	int	i;
 
 	i = 0;
-	while (ft_check_ok(f) && i < f->d->n_f)
+	while (ft_check_ok(f) == 1 && i < f->d->n_f)
 	{
 		pthread_mutex_lock(&f->d->get_t);
 		if ((ft_get_t() - f->d->t_left[i]) >= f->d->t_d)

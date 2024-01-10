@@ -36,7 +36,7 @@ typedef struct s_list //d
 
 	pthread_mutex_t	get_t;
 	pthread_mutex_t	print;
-	pthread_mutex_t	ded;
+	pthread_mutex_t	dead;
 	pthread_mutex_t	eat;
 }				t_list;
 

@@ -74,7 +74,7 @@ int argv_to_int(char **argv,int pos,t_list *d)
 		d->nt_me=value;
 	else
 		d->nt_me= -1;//si argv5 no existe setea nt_me en -1
-	d->ok = 1;
+	d->ok = 0;
 	d->time = ft_get_t();
 	print_value(d);//
 	return (0);

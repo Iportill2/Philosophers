@@ -25,7 +25,7 @@ void	*watch_phi_rou(void *born)
 	}
 	if (f->phi_id % 2 == 0 && f->phi_id != f->d->n_f)
 	{
-		ft_live(f);
+		ft_live(f);//check
 		//printf("1ft_live(f);\n"); 
 	}
 	else if (f->phi_id % 2 != 0 && f->phi_id != f->d->n_f)
@@ -49,7 +49,7 @@ void	ft_mutex_init(t_list *d)
 		pthread_mutex_init(&d->fork[i], NULL);
 		i++;
 	}
-	pthread_mutex_init(&d->ded, NULL);//mutex para ded
+	pthread_mutex_init(&d->dead, NULL);//mutex para ded
 	pthread_mutex_init(&d->eat, NULL);//mutex para eat
 	pthread_mutex_init(&d->print, NULL);//mutex para imprimir
 	pthread_mutex_init(&d->get_t, NULL);//mutex para get_time
@@ -66,7 +66,7 @@ void	ft_mutex_destroy(t_list *d)
 		pthread_mutex_destroy(&d->fork[i]);
 		i++;
 	}
-	pthread_mutex_destroy(&d->ded);
+	pthread_mutex_destroy(&d->dead);
 	pthread_mutex_destroy(&d->eat);
 	pthread_mutex_destroy(&d->print);
 	pthread_mutex_destroy(&d->get_t);
