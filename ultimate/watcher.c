@@ -44,7 +44,7 @@ void	ft_watcher_t_d(t_phi *f)
 
 void	ft_watcher(t_phi *f)
 {
-	while (ft_check_ok(f))
+	while (ft_check_ok(f) == 1)
 	{
 		usleep(100);
 		if (f->d->nt_me != -1)

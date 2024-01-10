@@ -6,7 +6,7 @@ int	ft_check_ok(t_phi *f)
 
 	i = 0;
 	pthread_mutex_lock(&f->d->ded);
-	if (f->d->ok)
+	if (f->d->ok == 1)
 		i = 1;
 	pthread_mutex_unlock(&f->d->ded);
 	return (i);
@@ -20,7 +20,6 @@ void	ft_dead(t_phi *f, int p_n)
 		f->d->ok = 0;
 		pthread_mutex_lock(&f->d->print);
 		printf(RR"Elapsed run time %lu\nPhilo nº%i died ☠️\n\n"WW, ft_get_t() - f->d->time, p_n + 1);
-		
 		pthread_mutex_unlock(&f->d->print);
 	}
 	pthread_mutex_unlock(&f->d->ded);

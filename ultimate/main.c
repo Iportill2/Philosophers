@@ -100,11 +100,7 @@ int ft_init_struct(char **argv)
 	
 	if(ft_struc_calloc(d) == 1)
 		return (printf("Error creating structure\n"), free (d), 1);
-	ft_thread(d);
-/* 	free(d->fork);
-	free(d->phi); */
-	/* if(start_table(d) == 1)
-		error(d,2); */
+	ft_thread(d);//crear un if para gestionar los errores
 	return(0);
 }
 

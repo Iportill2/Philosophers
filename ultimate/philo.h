@@ -73,7 +73,7 @@ void	ft_watcher_t_d(t_phi *f);
 void	ft_watcher(t_phi *f);
 
 /*LIVING*/
-int	ft_check_ok(t_phi *f);
+int		ft_check_ok(t_phi *f);
 void	ft_dead(t_phi *f, int p_n);
 void	ft_eating(t_phi *f, int p_n);
 void	ft_eat(t_phi *f);
