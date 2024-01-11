@@ -6,7 +6,7 @@
 /*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 17:11:09 by iportill          #+#    #+#             */
-/*   Updated: 2024/01/11 12:01:23 by iportill         ###   ########.fr       */
+/*   Updated: 2024/01/11 12:35:57 by iportill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,23 +36,15 @@ int	ft_struc_calloc(t_list *d)
 	d->eat_n = ft_calloc (sizeof(int), d->n_f);
 	if (!d->eat_n)
 		return (1);
-	else
-		printf("d->eat_n creado con exito\n");
 	d->t_left = ft_calloc (sizeof(long), d->n_f);
 	if (d->t_left == 0)
 		return (1);
-	else
-		printf("d->t_left creado con exito\n");
 	d->phi = ft_calloc (sizeof(pthread_t), d->n_f + 1);
 	if (!d->phi)
 		return (1);
-	else
-		printf("d->phi creado con exito\n");
 	d->fork_mutex = ft_calloc (sizeof(pthread_mutex_t), d->n_f);
 	if (!d->fork_mutex)
 		return (1);
-	else
-		printf("d->fork creado con exito\n");
 	ft_struc_calloc_bis(d);
 	return (0);
 }
@@ -115,8 +107,6 @@ int	main(int argc, char **argv)
 	{
 		if (ft_init_struct(argv) == 1)
 			return (1);
-		else
-			printf("Program end succesfully!\n");
 	}
 	else
 	{

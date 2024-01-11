@@ -6,7 +6,7 @@
 /*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 11:01:23 by iportill          #+#    #+#             */
-/*   Updated: 2024/01/11 11:56:45 by iportill         ###   ########.fr       */
+/*   Updated: 2024/01/11 12:34:30 by iportill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,15 @@ int	ft_free_s(t_list *d)
 {
 	free(d);
 	return (0);
+}
+
+void	ft_free_d(t_list *d)
+{
+	free(d->eat_n);
+	free(d->t_left);
+	free(d->phi);
+	free(d->fork_mutex);
+	free(d);
 }
 
 int	error(t_list *d, int n)

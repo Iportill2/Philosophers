@@ -6,7 +6,7 @@
 /*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 11:17:06 by iportill          #+#    #+#             */
-/*   Updated: 2024/01/11 12:01:50 by iportill         ###   ########.fr       */
+/*   Updated: 2024/01/11 12:35:45 by iportill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void	ft_mutex_init(t_list *d)
 	pthread_mutex_init(&d->eat, NULL);
 	pthread_mutex_init(&d->print, NULL);
 	pthread_mutex_init(&d->get_t, NULL);
-	printf("ft_mutex_init ejecutado con exito\n");
 }
 
 void	ft_mutex_destroy(t_list *d)
@@ -77,7 +76,6 @@ void	ft_mutex_destroy(t_list *d)
 	pthread_mutex_destroy(&d->eat);
 	pthread_mutex_destroy(&d->print);
 	pthread_mutex_destroy(&d->get_t);
-	printf("ft_mutex_destroy ejecutado con exito\n");
 }
 
 int	ft_thread(t_list *d)
@@ -106,5 +104,5 @@ int	ft_thread(t_list *d)
 		i++;
 	}
 	ft_mutex_destroy(d);
-	return (0);
+	return (ft_free_d(d), 0);
 }

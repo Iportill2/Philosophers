@@ -6,7 +6,7 @@
 /*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 11:00:36 by iportill          #+#    #+#             */
-/*   Updated: 2024/01/11 12:00:45 by iportill         ###   ########.fr       */
+/*   Updated: 2024/01/11 17:51:08 by iportill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,12 @@ void	ft_eating(t_phi *f, int p_n)
 	printf(GG"Elapsed run time %lu\nPhilo nº%i is eating 🍜\n\n"WW, \
 get_time() - f->d->time, p_n + 1);
 	pthread_mutex_unlock(&f->d->print);
-	pthread_mutex_unlock(&f->d->fork_mutex[f->f1]);
-	pthread_mutex_unlock(&f->d->fork_mutex[f->f2]);
 	pthread_mutex_lock(&f->d->eat);
 	f->d->eat_n[p_n] = f->d->eat_n[p_n] + 1;
 	pthread_mutex_unlock(&f->d->eat);
 	ft_usleep(f->d->t_e);
+	pthread_mutex_unlock(&f->d->fork_mutex[f->f1]);
+	pthread_mutex_unlock(&f->d->fork_mutex[f->f2]);
 }
 
 void	ft_eat(t_phi *f)

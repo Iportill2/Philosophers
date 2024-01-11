@@ -6,7 +6,7 @@
 /*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 17:14:57 by iportill          #+#    #+#             */
-/*   Updated: 2024/01/11 11:59:30 by iportill         ###   ########.fr       */
+/*   Updated: 2024/01/11 12:34:40 by iportill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void	ft_struc_calloc_bis(t_list *d);
 void	print_value(t_list *d);
 int		ft_free_s(t_list *d);
 int		error(t_list *d, int n);
+void	ft_free_d(t_list *d);
 /*THREAD*/
 void	ft_mutex_init(t_list *d);
 void	ft_mutex_destroy(t_list *d);

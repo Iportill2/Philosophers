@@ -1,5 +1,6 @@
 NAME = philo
 CC = gcc
+#CFLAGS = -Wall -Werror -Wextra  -g3 -fsanitize=thread #-pthread
 CFLAGS = -Wall -Werror -Wextra  -g3 -fsanitize=address #-pthread
 
 CHECKER = checker
@@ -16,7 +17,7 @@ INCLUDE = philo.h
 
 OBJS = $(SRC_FILES:.c=.o)
 
-.SILENT:
+#.SILENT:
 
 all: lib $(NAME)
 
