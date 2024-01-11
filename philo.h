@@ -6,7 +6,7 @@
 /*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 17:14:57 by iportill          #+#    #+#             */
-/*   Updated: 2024/01/10 17:16:01 by iportill         ###   ########.fr       */
+/*   Updated: 2024/01/11 11:49:35 by iportill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,14 @@
 # include <limits.h>
 # include <string.h>
 
-# define WW "\033[0m"    // Reset (blanco)
-# define RR "\033[91m"   // Rojo
-# define GG "\033[92m"   // Verde
-# define BB "\033[94m"   // Azul
-# define OO "\033[93m"   // Naranja
-# define YY "\033[33m"   // Amarillo
-# define CC "\033[96m"  // Azul claro
+# define WW "\033[0m"    
+# define RR "\033[91m"   
+# define GG "\033[92m"   
+# define BB "\033[94m"   
+# define OO "\033[93m"   
+# define YY "\033[33m"   
+# define CC "\033[96m" 
+# define KK "\033[95m" 
 
 typedef struct s_list //d
 {

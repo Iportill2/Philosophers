@@ -6,7 +6,7 @@
 /*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 11:01:23 by iportill          #+#    #+#             */
-/*   Updated: 2024/01/11 11:07:54 by iportill         ###   ########.fr       */
+/*   Updated: 2024/01/11 11:56:45 by iportill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	error(t_list *d, int n)
 	if (n == 2)
 	{
 		printf(CC"Elapsed run time 0\nPhilo nº1 \
-		has taken a right fork 🍴\n\n"WW);
+has taken a right fork 🍴\n\n"WW);
 		printf(RR"Elapsed run time %ld\nPhilo nº1 died ☠️\n"WW, d->t_d);
 		free(d);
 		exit(1);
