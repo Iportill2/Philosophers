@@ -1,51 +1,64 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/11 11:31:12 by iportill          #+#    #+#             */
+/*   Updated: 2024/01/11 11:35:41 by iportill         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
-void* ft_calloc(size_t num, size_t size) 
+void	*ft_calloc(size_t num, size_t size)
 {
-    void* ptr = malloc(num * size);
-    if (ptr == NULL) 
-        return NULL;
-    memset(ptr, 0, num * size);
-    return (ptr);
+	void	*ptr;
+
+	ptr = malloc(num * size);
+	if (ptr == NULL)
+		return (NULL);
+	memset(ptr, 0, num * size);
+	return (ptr);
 }
 
-size_t ft_strlen(const char *s)
+size_t	ft_strlen(const char *s)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
-	if(s== NULL)
-		return(0);
+	if (s == NULL)
+		return (0);
 	while (s[i])
 		i++;
-	return(i);
-	
+	return (i);
 }
 
-char *ft_strdup(const char *s) 
+char	*ft_strdup(const char *s)
 {
-    char *dup;
-	size_t i;
+	char	*dup;
+	size_t	i;
 
 	i = 0;
 	dup = NULL;
-	dup = ft_calloc(sizeof(char),ft_strlen(s) + 1);
-    while(s[i])
+	dup = ft_calloc(sizeof(char), ft_strlen(s) + 1);
+	while (s[i])
 	{
-		dup[i]=s[i];
+		dup[i] = s[i];
 		i++;
 	}
-	dup[i]='\0';
-    return (dup);
+	dup[i] = '\0';
+	return (dup);
 }
 
 int	ft_spaces(char c)
 {
-	if(c == ' ' || c == '\t' || c == '\n' || c == '\v'
+	if (c == ' ' || c == '\t' || c == '\n' || c == '\v'
 		|| c == '\f' || c == '\r')
-		return(1);
+		return (1);
 	else
-		return(0);
+		return (0);
 }
 
 int	ft_atoi(const char *str)

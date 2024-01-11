@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   watcher.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/11 11:15:48 by iportill          #+#    #+#             */
+/*   Updated: 2024/01/11 11:19:55 by iportill         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 void	ft_watcher_nt_me(t_phi *f)
@@ -18,9 +30,9 @@ void	ft_watcher_nt_me(t_phi *f)
 	if (c == f->d->n_f)
 	{
 		pthread_mutex_lock(&f->d->dead);
-		f->d->stop = 1;//lo ponemos para que terminen los hilos despues de imprimir el mensaje, sino corta la rutina 
+		f->d->stop = 1;
 		pthread_mutex_unlock(&f->d->dead);
-		printf(RR"All the philosophers ate %d times!!\n"WW,f->d->nt_me);
+		printf(RR"All the philosophers ate %d times!!\n"WW, f->d->nt_me);
 	}
 }
 
@@ -33,10 +45,7 @@ void	ft_watcher_t_d(t_phi *f)
 	{
 		pthread_mutex_lock(&f->d->get_t);
 		if ((get_time() - f->d->t_left[i]) >= f->d->t_d)
-		{
 			ft_dead(f, i);
-			//printf("ft_dead(f,i);\n");
-		}
 		pthread_mutex_unlock(&f->d->get_t);
 		i++;
 	}

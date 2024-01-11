@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philo.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/10 17:14:57 by iportill          #+#    #+#             */
+/*   Updated: 2024/01/10 17:16:01 by iportill         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PHILO_H
 # define PHILO_H
 # include <stdlib.h>
@@ -20,15 +32,14 @@ typedef struct s_list //d
 {
 	size_t			stop;
 
-	int 			n_f;
+	int				n_f;
 	size_t			t_d;
 	size_t			t_e;
 	size_t			t_s;
 
-	int			nt_me;
+	int				nt_me;
 
 	long			time;
-	
 	int				*eat_n;
 	size_t			*t_left;
 	pthread_t		*phi;
@@ -49,16 +60,16 @@ typedef struct s_phi //f
 }				t_phi;
 
 /*MAIN*/
-int 	argv_to_int(char **argv,int pos,t_list *d);
+int		argv_to_int(char **argv, int pos, t_list *d);
 int		ft_init_struct(char **argv);
 int		main(int argc, char **argv);
-int 	ft_struc_calloc(t_list *d);
-void 	ft_struc_calloc_bis(t_list *d);
+int		ft_struc_calloc(t_list *d);
+void	ft_struc_calloc_bis(t_list *d);
 
 /*ERROR*/
 void	print_value(t_list *d);
 int		ft_free_s(t_list *d);
-int 	error(t_list *d,int n);
+int		error(t_list *d, int n);
 /*THREAD*/
 void	ft_mutex_init(t_list *d);
 void	ft_mutex_destroy(t_list *d);
@@ -81,8 +92,8 @@ void	ft_live(t_phi *f);
 
 /*UTILS*/
 void	*ft_calloc(size_t num, size_t size);
-size_t 	ft_strlen(const char *s);
-char 	*ft_strdup(const char *s);
+size_t	ft_strlen(const char *s);
+char	*ft_strdup(const char *s);
 int		ft_spaces(char c);
 int		ft_atoi(const char *str);
 
