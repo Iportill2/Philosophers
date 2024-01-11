@@ -6,7 +6,7 @@
 /*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 11:17:06 by iportill          #+#    #+#             */
-/*   Updated: 2024/01/11 11:19:49 by iportill         ###   ########.fr       */
+/*   Updated: 2024/01/11 12:01:50 by iportill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	ft_mutex_init(t_list *d)
 	i = 0;
 	while (i < d->n_f)
 	{
-		pthread_mutex_init(&d->fork[i], NULL);
+		pthread_mutex_init(&d->fork_mutex[i], NULL);
 		i++;
 	}
 	pthread_mutex_init(&d->dead, NULL);
@@ -70,7 +70,7 @@ void	ft_mutex_destroy(t_list *d)
 	i = 0;
 	while (i < d->n_f)
 	{
-		pthread_mutex_destroy(&d->fork[i]);
+		pthread_mutex_destroy(&d->fork_mutex[i]);
 		i++;
 	}
 	pthread_mutex_destroy(&d->dead);

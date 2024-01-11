@@ -6,7 +6,7 @@
 /*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 17:14:57 by iportill          #+#    #+#             */
-/*   Updated: 2024/01/11 11:49:35 by iportill         ###   ########.fr       */
+/*   Updated: 2024/01/11 11:59:30 by iportill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct s_list //d
 	int				*eat_n;
 	size_t			*t_left;
 	pthread_t		*phi;
-	pthread_mutex_t	*fork;
+	pthread_mutex_t	*fork_mutex;
 
 	pthread_mutex_t	get_t;
 	pthread_mutex_t	print;

@@ -6,7 +6,7 @@
 /*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 17:11:09 by iportill          #+#    #+#             */
-/*   Updated: 2024/01/11 11:30:16 by iportill         ###   ########.fr       */
+/*   Updated: 2024/01/11 12:01:23 by iportill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ int	ft_struc_calloc(t_list *d)
 		return (1);
 	else
 		printf("d->phi creado con exito\n");
-	d->fork = ft_calloc (sizeof(pthread_mutex_t), d->n_f);
-	if (!d->fork)
+	d->fork_mutex = ft_calloc (sizeof(pthread_mutex_t), d->n_f);
+	if (!d->fork_mutex)
 		return (1);
 	else
 		printf("d->fork creado con exito\n");
