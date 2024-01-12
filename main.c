@@ -6,7 +6,7 @@
 /*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 17:11:09 by iportill          #+#    #+#             */
-/*   Updated: 2024/01/12 13:04:44 by iportill         ###   ########.fr       */
+/*   Updated: 2024/01/12 13:41:49 by iportill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,9 +93,9 @@ int	ft_init_struct(char **argv)
 	if (d->n_f == 1)
 		error (d, 2);
 	if (ft_struc_calloc(d) == 1)
-		return (printf("Error creating structure\n"), free(d), exit(1),1);
+		return (printf("Error creating structure\n"), free(d), exit(1), 1);
 	else
-		if(ft_thread(d) == 1)
+		if (ft_thread(d) == 1)
 			return (free(d), 1);
 	return (0);
 }
