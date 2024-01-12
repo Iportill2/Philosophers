@@ -6,7 +6,7 @@
 /*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 17:14:57 by iportill          #+#    #+#             */
-/*   Updated: 2024/01/11 12:34:40 by iportill         ###   ########.fr       */
+/*   Updated: 2024/01/12 13:14:13 by iportill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@
 # define OO "\033[93m"   
 # define YY "\033[33m"   
 # define CC "\033[96m" 
-# define KK "\033[95m" 
+# define KK "\033[90m" 
 
-typedef struct s_list //d
+typedef struct s_list
 {
 	size_t			stop;
 
@@ -39,37 +39,36 @@ typedef struct s_list //d
 	size_t			t_s;
 
 	int				nt_me;
+	int				*eat_n;
 
 	long			time;
-	int				*eat_n;
+	
 	size_t			*t_left;
 	pthread_t		*phi;
 	pthread_mutex_t	*fork_mutex;
 
-	pthread_mutex_t	get_t;
-	pthread_mutex_t	print;
-	pthread_mutex_t	dead;
-	pthread_mutex_t	eat;
+	pthread_mutex_t	get_t_mutex;
+	pthread_mutex_t	print_mutex;
+	pthread_mutex_t	stop_mutex;
+	pthread_mutex_t	eat_mutex;
 }				t_list;
 
-typedef struct s_phi //f
+typedef struct s_phi
 {
 	int				phi_id;
-	int				f1;
-	int				f2;
+	int				right_fork;
+	int				left_fork;
 	t_list			*d;
 }				t_phi;
 
 /*MAIN*/
-int		argv_to_int(char **argv, int pos, t_list *d);
+void	argv_to_int(char **argv, int pos, t_list *d);
 int		ft_init_struct(char **argv);
 int		main(int argc, char **argv);
 int		ft_struc_calloc(t_list *d);
 void	ft_struc_calloc_bis(t_list *d);
 
 /*ERROR*/
-void	print_value(t_list *d);
-int		ft_free_s(t_list *d);
 int		error(t_list *d, int n);
 void	ft_free_d(t_list *d);
 /*THREAD*/
@@ -90,7 +89,7 @@ int		ft_check_ok(t_phi *f);
 void	ft_dead(t_phi *f, int p_n);
 void	ft_eating(t_phi *f, int p_n);
 void	ft_eat(t_phi *f);
-void	ft_live(t_phi *f);
+void	ft_routine(t_phi *f);
 
 /*UTILS*/
 void	*ft_calloc(size_t num, size_t size);

@@ -6,7 +6,7 @@
 /*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 17:11:09 by iportill          #+#    #+#             */
-/*   Updated: 2024/01/11 12:35:57 by iportill         ###   ########.fr       */
+/*   Updated: 2024/01/12 13:04:44 by iportill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	ft_struc_calloc(t_list *d)
 	return (0);
 }
 
-int	argv_to_int(char **argv, int pos, t_list *d)
+void	argv_to_int(char **argv, int pos, t_list *d)
 {
 	int	value;
 
@@ -72,7 +72,7 @@ int	argv_to_int(char **argv, int pos, t_list *d)
 		d->nt_me = -1;
 	d->stop = 0;
 	d->time = get_time();
-	return (0);
+	return ;
 }
 
 int	ft_init_struct(char **argv)
@@ -93,11 +93,11 @@ int	ft_init_struct(char **argv)
 	if (d->n_f == 1)
 		error (d, 2);
 	if (ft_struc_calloc(d) == 1)
-		return (printf("Error creating structure\n"), free (d), 1);
-	if (ft_thread(d) == 1)
-		return (1);
+		return (printf("Error creating structure\n"), free(d), exit(1),1);
 	else
-		return (0);
+		if(ft_thread(d) == 1)
+			return (free(d), 1);
+	return (0);
 }
 
 int	main(int argc, char **argv)

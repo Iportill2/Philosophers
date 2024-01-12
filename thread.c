@@ -6,7 +6,7 @@
 /*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 11:17:06 by iportill          #+#    #+#             */
-/*   Updated: 2024/01/11 12:35:45 by iportill         ###   ########.fr       */
+/*   Updated: 2024/01/12 13:15:02 by iportill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,21 +26,21 @@ void	*watch_phi_rou(void *born)
 	t_phi	*f;
 
 	f = (t_phi *)born;
-	f->f1 = f->phi_id;
+	f->right_fork = f->phi_id;
 	if (f->phi_id == f->d->n_f - 1)
-		f->f2 = 0;
+		f->left_fork = 0;
 	else
-		f->f2 = f->phi_id + 1;
+		f->left_fork = f->phi_id + 1;
 	if (f->phi_id == f->d->n_f)
 		ft_watcher(f);
 	if (f->phi_id % 2 == 0 && f->phi_id != f->d->n_f)
 	{
-		ft_live(f);
+		ft_routine(f);
 	}
 	else if (f->phi_id % 2 != 0 && f->phi_id != f->d->n_f)
 	{
 		usleep((10) * 1000);
-		ft_live(f);
+		ft_routine(f);
 	}
 	free (f);
 	return (0);
@@ -56,10 +56,10 @@ void	ft_mutex_init(t_list *d)
 		pthread_mutex_init(&d->fork_mutex[i], NULL);
 		i++;
 	}
-	pthread_mutex_init(&d->dead, NULL);
-	pthread_mutex_init(&d->eat, NULL);
-	pthread_mutex_init(&d->print, NULL);
-	pthread_mutex_init(&d->get_t, NULL);
+	pthread_mutex_init(&d->stop_mutex, NULL);
+	pthread_mutex_init(&d->eat_mutex, NULL);
+	pthread_mutex_init(&d->print_mutex, NULL);
+	pthread_mutex_init(&d->get_t_mutex, NULL);
 }
 
 void	ft_mutex_destroy(t_list *d)
@@ -72,10 +72,10 @@ void	ft_mutex_destroy(t_list *d)
 		pthread_mutex_destroy(&d->fork_mutex[i]);
 		i++;
 	}
-	pthread_mutex_destroy(&d->dead);
-	pthread_mutex_destroy(&d->eat);
-	pthread_mutex_destroy(&d->print);
-	pthread_mutex_destroy(&d->get_t);
+	pthread_mutex_destroy(&d->stop_mutex);
+	pthread_mutex_destroy(&d->eat_mutex);
+	pthread_mutex_destroy(&d->print_mutex);
+	pthread_mutex_destroy(&d->get_t_mutex);
 }
 
 int	ft_thread(t_list *d)
