@@ -1,0 +1,33 @@
+# Archivos objeto
+*.o
+
+# Archivos ejecutables
+philo
+
+# Archivos de depuración
+*.dSYM/
+
+# Archivos temporales
+*~
+.*.swp
+.*.swo
+
+# Archivos de configuración del sistema
+.DS_Store
+.vscode/
+.idea/
+
+# Archivos de registro y depuración
+*.log
+*.debug
+
+# Archivos de respaldo
+*.bak
+
+# Archivos de dependencias
+*.d
+
+# Directorios de compilación
+build/
+Debug/
+Release/
